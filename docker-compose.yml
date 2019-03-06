@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+
+  redis-1:
+    container_name: redis-7000
+    build: ../redis/7000
+    command: redis-server /etc/redis/redis.conf
+    network_mode: host
+    ports:
+     - "7000:7000"
+     - "17000:17000"
+
+  redis-2:
+    container_name: redis-7001
+    build: ../redis/7001
+    command: redis-server /etc/redis/redis.conf
+    depends_on:
+      - redis-1
+    network_mode: host
+    ports:
+     - "7001:7001"
+     - "17001:17001"
+
+  redis-3:
+    container_name: redis-7002
+    build: ../redis/7002
+    command: redis-server /etc/redis/redis.conf
+    depends_on:
+      - redis-2
+    network_mode: host
+    ports:
+     - "7002:7002"
+     - "17002:17002"
+
+  redis-4:
+    container_name: redis-7003
+    build: ../redis/7003
+    command: redis-server /etc/redis/redis.conf
+    depends_on:
+      - redis-3
+    network_mode: host
+    ports:
+     - "7003:7003"
+     - "17003:17003"
+
+  redis-5:
+    container_name: redis-7004
+    build: ../redis/7004
+    command: redis-server /etc/redis/redis.conf
+    depends_on:
+      - redis-4
+    network_mode: host
+    ports:
+     - "7004:7004"
+     - "17004:17004"
+
+  redis-6:
+    container_name: redis-7005
+    build: ../redis/7005
+    command: redis-server /etc/redis/redis.conf
+    depends_on:
+      - redis-5
+    network_mode: host
+    ports:
+     - "7005:7005"
+     - "17005:17005"
